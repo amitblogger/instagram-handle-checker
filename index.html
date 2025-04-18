@@ -7,49 +7,45 @@
   <meta name="keywords" content="Instagram handle checker, Instagram name ideas, IG username generator, unique IG names" />
   <title>Instagram Handle Checker | Free IG Name Ideas Generator</title>
 
-  <!-- JSON‑LD structured data -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Instagram Handle Checker & Suggestion Tool",
-    "url": "https://<your-username>.github.io/instagram-handle-checker/",
-    "description": "Generate unique Instagram handle ideas and check handle availability."
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Instagram Handle Checker & Suggestion Tool",
+    "url":"https://<your-username>.github.io/instagram-handle-checker/",
+    "description":"Generate unique Instagram handle ideas and check handle availability."
   }
   </script>
 
   <style>
-  /* Utility Reset */
+  /*—— Reset & Variables ——*/
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  /* Theme Variables */
   :root {
+    /* core palette */
     --primary: #405DE6;
     --secondary: #833AB4;
     --accent: #FD1D1D;
     --bg-light: #FAFAFA;
-    --bg-dark: #1A1A1A;
+    --bg-dark: #121212;
     --text-light: #222;
     --text-dark: #EEE;
     --card-light: #fff;
-    --card-dark: #333;
+    --card-dark: #1e1e1e;
     --radius: 6px;
-    --transition: 0.3s ease;
+    --transition: .3s ease;
 
-    /* active variables */
+    /* live colors */
     --bg: var(--bg-light);
     --text: var(--text-light);
     --card-bg: var(--card-light);
   }
-
-  /* Dark Mode Overrides */
   body.dark {
     --bg: var(--bg-dark);
     --text: var(--text-dark);
     --card-bg: var(--card-dark);
   }
 
-  /* Base Styles */
+  /*—— Base Styles ——*/
   body {
     background: var(--bg);
     color: var(--text);
@@ -57,146 +53,185 @@
     display: flex; flex-direction: column; min-height: 100vh;
     transition: background var(--transition), color var(--transition);
   }
+  a { color: var(--primary); }
 
-  a { color: var(--primary); text-decoration: none; }
-
-  /* Header & Nav */
+  /*—— Header ——*/
   header {
-    position: sticky; top: 0; background: var(--primary); color: #fff;
-    padding: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.2); z-index: 1000;
+    position: sticky; top: 0;
+    background: var(--primary);
+    color: #fff;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,.2);
+    z-index: 10;
   }
   .header-inner {
-    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    display: flex; flex-direction: column; align-items: center; gap: .5rem;
   }
-  .logo {
-    font-size: 2rem; display: flex; align-items: center; gap: 0.5rem;
-  }
+  .logo { font-size: 2rem; display: flex; align-items: center; gap:.5rem; }
   .logo .icon { font-size: 2.5rem; }
-  .header-tagline {
-    font-size: 1rem; opacity: 0.9;
-  }
+  .header-tagline { opacity:.9; }
   #theme-toggle {
-    background: none; border: none; color: #fff; font-size: 1.2rem;
-    cursor: pointer; transition: transform var(--transition);
+    background:none; border:none; color:#fff; font-size:1.2rem;
+    cursor:pointer; transition:transform var(--transition);
   }
-  #theme-toggle:hover { transform: scale(1.1); }
+  #theme-toggle:hover { transform:scale(1.1); }
   .header-nav {
-    display: flex; gap: 1rem; margin-top: 0.5rem;
+    display:flex; gap:1rem; margin-top:.5rem;
   }
   .nav-btn {
-    background: none; border: none; color: #fff; font-weight: bold;
-    padding: 0.3rem 0.6rem; cursor: pointer; transition: background var(--transition);
-    border-radius: var(--radius);
+    background:none; border:none; color:#fff; font-weight:bold;
+    padding:.3rem .6rem; cursor:pointer; border-radius:var(--radius);
+    transition:background var(--transition);
   }
-  .nav-btn:hover { background: rgba(255,255,255,0.2); }
-  .nav-btn.active-btn {
-    background: rgba(255,255,255,0.3);
-  }
+  .nav-btn:hover { background:rgba(255,255,255,.2); }
+  .nav-btn.active-btn { background:rgba(255,255,255,.3); }
 
-  /* Sections */
+  /*—— Main Sections ——*/
   main section {
-    display: none; padding: 2rem 1rem; max-width: 800px; margin: auto;
-    transition: background var(--transition), color var(--transition);
+    display:none;
+    padding:2rem 1rem;
+    max-width:800px; margin:auto;
+    transition:background var(--transition), color var(--transition);
   }
-  main section.active { display: block; }
-  h2 { margin-bottom: 1rem; color: var(--primary); }
+  main section.active { display:block; }
+  h2 { margin-bottom:1rem; color:var(--primary); }
 
-  /* Hero / Try Section */
+  /*—— Hero / Try Now ——*/
   .hero {
-    background: var(--card-bg); border-radius: var(--radius);
-    padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    text-align: center;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding:2rem;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+    text-align:center;
   }
-  .hero h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-  .hero .tagline { margin-bottom: 1rem; font-style: italic; color: var(--secondary); }
-
+  .hero h1 { font-size:2rem; margin-bottom:.5rem; color:var(--text); }
+  .hero .tagline {
+    margin-bottom:1rem;
+    font-style:italic;
+    color:var(--secondary);
+  }
   #handleForm {
-    display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;
+    display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center;
   }
   #handleForm input {
-    flex: 1 1 200px; padding: 0.6rem;
-    border: 2px solid var(--primary); border-radius: var(--radius);
-    background: var(--bg); color: var(--text);
+    flex:1 1 200px;
+    padding:.6rem;
+    border:2px solid var(--primary);
+    border-radius:var(--radius);
+    background: var(--bg);
+    color: var(--text);
+    transition:border var(--transition), background var(--transition), color var(--transition);
   }
+  #handleForm input::placeholder { color:rgba(var(--text-light)  / .6); }
   #handleForm button {
-    padding: 0.6rem 1.2rem; background: var(--secondary);
-    color: #fff; border: none; border-radius: var(--radius);
-    cursor: pointer; transition: background var(--transition);
+    padding:.6rem 1.2rem;
+    background:var(--secondary);
+    color:#fff;
+    border:none;
+    border-radius:var(--radius);
+    cursor:pointer;
+    transition:background var(--transition);
   }
-  #handleForm button:hover { background: var(--accent); }
+  #handleForm button:hover { background:var(--accent); }
 
   .filters {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;
-    margin: 1rem 0;
+    display:flex; flex-wrap:wrap; justify-content:center; gap:1rem; margin:1rem 0;
   }
-  .filters label { font-size: 0.9rem; }
-  #maxLengthVal { font-weight: bold; margin-left: 0.3rem; }
+  .filters label { font-size:.9rem; color:var(--text); }
+  #maxLengthVal { font-weight:bold; margin-left:.3rem; }
 
-  #analytics { text-align: center; font-size: 0.9rem; margin-bottom: 1rem; }
+  #analytics {
+    text-align:center;
+    font-size:.9rem;
+    margin-bottom:1rem;
+    color:var(--text);
+  }
 
-  /* Suggestions Grid */
+  /*—— Suggestions ——*/
   .suggestions {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-    gap: 1rem;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:1rem;
   }
   .suggestion {
-    background: var(--card-bg); border: 2px solid var(--primary);
-    border-radius: var(--radius); padding: 1rem; position: relative;
-    transition: background var(--transition), color var(--transition);
+    background:var(--card-bg);
+    border:2px solid var(--primary);
+    border-radius:var(--radius);
+    padding:1rem;
+    position:relative;
+    transition:background var(--transition), color var(--transition);
   }
-  .suggestion p { margin-bottom: 0.5rem; word-break: break-all; color: var(--text); }
-  .btn-group { display: flex; gap: 0.3rem; }
+  .suggestion p {
+    margin-bottom:.5rem;
+    word-break:break-all;
+    color:var(--text);
+  }
+  .btn-group { display:flex; gap:.3rem; }
   .btn {
-    flex: 1; padding: 0.4rem; font-size: 0.85rem;
-    border: none; border-radius: var(--radius); cursor: pointer;
-    transition: background var(--transition);
+    flex:1;
+    padding:.4rem;
+    font-size:.85rem;
+    border:none;
+    border-radius:var(--radius);
+    cursor:pointer;
+    transition:background var(--transition), color var(--transition);
   }
-  .copy-btn { background: var(--primary); color: #fff; }
-  .copy-btn:hover { background: var(--accent); }
-  .share-btn { background: var(--secondary); color: #fff; }
-  .share-btn:hover { background: var(--accent); }
+  .copy-btn { background:var(--primary); color:#fff; }
+  .copy-btn:hover { background:var(--accent); }
+  .share-btn { background:var(--secondary); color:#fff; }
+  .share-btn:hover { background:var(--accent); }
   .favorite-btn {
-    position: absolute; top: 0.5rem; right: 0.5rem;
-    background: none; border: none; font-size: 1.2rem; cursor: pointer;
-    color: var(--accent); transition: color var(--transition);
+    position:absolute;
+    top:.5rem; right:.5rem;
+    background:none; border:none;
+    font-size:1.2rem; cursor:pointer;
+    color:var(--accent);
+    transition:color var(--transition);
   }
   .favorite-btn.fav { color: gold; }
 
-  /* Footer */
+  /*—— Footer ——*/
   footer {
-    background: var(--card-bg); padding: 2rem 1rem; margin-top: auto;
-    transition: background var(--transition), color var(--transition);
+    background: var(--card-bg);
+    padding:2rem 1rem;
+    margin-top:auto;
+    transition:background var(--transition), color var(--transition);
   }
   .footer-nav {
-    display: flex; gap: 1rem; justify-content: center; margin-bottom: 1rem;
+    display:flex; gap:1rem; justify-content:center; margin-bottom:1rem;
   }
   .footer-btn {
-    background: none; border: none; color: var(--primary);
-    font-weight: bold; padding: 0.3rem 0.6rem; cursor: pointer;
-    transition: background var(--transition), color var(--transition);
-    border-radius: var(--radius);
+    background:none; border:none;
+    color:var(--primary);
+    font-weight:bold;
+    padding:.3rem .6rem;
+    cursor:pointer;
+    border-radius:var(--radius);
+    transition:background var(--transition), color var(--transition);
   }
-  .footer-btn:hover { background: rgba(0,0,0,0.05); }
-  .footer-btn.active-footer { color: var(--accent); }
+  .footer-btn:hover { background:rgba(0,0,0,.05); }
+  .footer-btn.active-footer { color:var(--accent); }
   footer section {
-    display: none; margin-top: 1rem; max-width: 800px; margin: auto;
+    display:none;
+    margin-top:1rem;
+    max-width:800px; margin:auto;
+    color:var(--text);
   }
-  footer section.active { display: block; }
-  footer section p { line-height: 1.6; margin-top: 0.5rem; }
+  footer section.active { display:block; }
 
-  @media (max-width: 600px) {
-    .header-nav, .footer-nav { flex-direction: column; align-items: center; }
-    .filters { flex-direction: column; }
+  @media(max-width:600px){
+    .header-nav, .footer-nav{ flex-direction:column; align-items:center }
+    .filters{ flex-direction:column }
   }
   </style>
 </head>
-<body class="dark"> <!-- start in dark or light as you prefer -->
+<body class="dark"><!-- start in dark or remove class for light -->
 
   <header>
     <div class="header-inner">
       <div class="logo"><span class="icon">📷</span> Instagram Handle Checker</div>
       <div class="header-tagline">Your brand starts here</div>
-      <button id="theme-toggle" aria-label="Toggle dark/light mode">☀️</button>
+      <button id="theme-toggle" aria-label="Toggle theme">☀️</button>
       <div class="header-nav">
         <button class="nav-btn" data-target="home">Home</button>
         <button class="nav-btn" data-target="how-it-works">How It Works</button>
@@ -211,40 +246,37 @@
     <section id="home">
       <h2>Welcome to IG Handle Checker</h2>
       <p>Finding the perfect Instagram handle can be a challenge—especially if your first choice is already taken.
-         Our free IG Handle Checker & Suggestion Tool helps you brainstorm unique, brand‑worthy usernames in seconds.
-         No APIs or external lookups—just a smart combination of prefixes, suffixes, trending buzzwords, numbers,
-         and even emojis to generate handles that stand out.</p>
+      Our free IG Handle Checker & Suggestion Tool helps you brainstorm unique, brand‑worthy usernames in seconds,
+      mixing prefixes, suffixes, trending buzzwords and emojis. All local, no APIs. Privacy guaranteed.</p>
     </section>
 
     <section id="how-it-works">
       <h2>How It Works</h2>
       <ul>
-        <li><strong>Enter a Base Name:</strong> Type your desired handle component (e.g., “yourbrand”).</li>
-        <li><strong>Adjust Filters:</strong> Set max length, allow underscores/dots/emojis.</li>
-        <li><strong>Generate Suggestions:</strong> Click Generate to see 6 unique handle ideas.</li>
-        <li><strong>Copy & Share:</strong> One‑click copy to clipboard or share on Twitter.</li>
+        <li><strong>Enter a Base Name:</strong> e.g. “yourbrand”.</li>
+        <li><strong>Adjust Filters:</strong> max length, underscores, dots, emojis.</li>
+        <li><strong>Generate:</strong> 6 unique handle ideas instantly.</li>
+        <li><strong>Copy & Share:</strong> One‑click clipboard or Twitter.</li>
       </ul>
     </section>
 
     <section id="features">
       <h2>Key Features</h2>
       <ul>
-        <li><strong>Instant Suggestions:</strong> Six unique handles per click.</li>
-        <li><strong>Smart Filters:</strong> Max length slider, toggles for “_”, “.”, emojis.</li>
-        <li><strong>Trending Boosters:</strong> Add buzzwords like “vibes,” “zone,” “hub.”</li>
-        <li><strong>Emoji Support:</strong> Include fun emojis in your handle.</li>
-        <li><strong>Favorites:</strong> Save your top picks with a star icon.</li>
-        <li><strong>Analytics:</strong> See how many names you’ve generated this session.</li>
-        <li><strong>Dark/Light Mode:</strong> Toggle theme manually.</li>
+        <li>Instant suggestions</li>
+        <li>Smart filters (length, symbols, emojis)</li>
+        <li>Trending buzzwords</li>
+        <li>Favorites & analytics</li>
+        <li>Dark/light mode</li>
       </ul>
     </section>
 
     <section id="faq">
-      <h2>Frequently Asked Questions</h2>
-      <h3>Can I check real availability?</h3>
-      <p>This version generates suggestions only—it does not ping Instagram’s servers. Always verify on Instagram before claiming a handle.</p>
-      <h3>How long can my Instagram username be?</h3>
-      <p>Instagram allows up to 30 characters. Use the slider above to set your preferred max length.</p>
+      <h2>FAQ</h2>
+      <h3>Real availability?</h3>
+      <p>Suggestions only—please verify on Instagram.</p>
+      <h3>Max length?</h3>
+      <p>Instagram allows up to 30 chars. Slider defaults to 15.</p>
     </section>
 
     <section id="try" class="active hero">
@@ -254,7 +286,6 @@
         <input type="text" id="baseName" placeholder="Enter base name" required aria-label="Base name" />
         <button type="submit">Generate</button>
       </form>
-
       <div class="filters">
         <label>
           Max length:
@@ -265,11 +296,7 @@
         <label><input type="checkbox" id="allowDot" checked /> Allow “.”</label>
         <label><input type="checkbox" id="allowEmoji" /> Allow emojis</label>
       </div>
-
-      <div id="analytics">
-        Suggestions generated this session: <span id="count">0</span>
-      </div>
-
+      <div id="analytics">Generated this session: <span id="count">0</span></div>
       <div id="suggestions" class="suggestions" aria-live="polite"></div>
     </section>
   </main>
@@ -282,177 +309,140 @@
     </div>
     <section id="privacy" class="active">
       <h3>Privacy Policy</h3>
-      <p>We respect your privacy. This tool runs entirely in your browser—no data is sent to any server. Your inputs and
-         generated suggestions remain local. We do not store personal information, track cookies, or share data with
-         third parties. Feel free to clear your browser data at any time to remove any residual information.</p>
+      <p>Tool runs in‑browser only. No data sent out. Inputs & outputs stay local.</p>
     </section>
     <section id="disclaimer">
       <h3>Disclaimer</h3>
-      <p>This IG Handle Checker provides creative suggestions only. It does not verify real‑time availability on Instagram.
-         Always check directly on Instagram before finalizing your handle. We cannot guarantee that any suggested handle
-         is free at the time of use.</p>
+      <p>Creative suggestions only—verify real availability on Instagram.</p>
     </section>
     <section id="contact-us">
       <h3>Contact Us</h3>
-      <p>Have feedback or questions? Reach out to us at <a href="mailto:support@yourdomain.com">support@yourdomain.com</a>.
-         We aim to respond within 48 hours. Whether you encounter bugs, need feature requests, or want to share your success
-         story, we’d love to hear from you!</p>
+      <p>Email us at <a href="admedianetwork09@gmail.com">admedianetwork09@gmail.com</a>.</p>
     </section>
   </footer>
 
   <script>
-  // Section toggle
+  // Section toggles
   function showSection(id) {
-    document.querySelectorAll('main section').forEach(sec => sec.classList.toggle('active', sec.id === id));
-    document.querySelectorAll('.nav-btn').forEach(btn =>
-      btn.classList.toggle('active-btn', btn.dataset.target === id)
-    );
+    document.querySelectorAll('main section').forEach(s => s.classList.toggle('active', s.id===id));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('active-btn', b.dataset.target===id));
   }
+  document.querySelectorAll('.nav-btn').forEach(b => b.addEventListener('click', ()=>showSection(b.dataset.target)));
 
-  // Footer toggle
+  // Footer toggles
   function showFooter(id) {
-    document.querySelectorAll('footer section').forEach(sec => sec.classList.toggle('active', sec.id === id));
-    document.querySelectorAll('.footer-btn').forEach(btn =>
-      btn.classList.toggle('active-footer', btn.dataset.target === id)
-    );
+    document.querySelectorAll('footer section').forEach(s => s.classList.toggle('active', s.id===id));
+    document.querySelectorAll('.footer-btn').forEach(b => b.classList.toggle('active-footer', b.dataset.target===id));
   }
-
-  // Attach nav buttons
-  document.querySelectorAll('.nav-btn').forEach(btn =>
-    btn.addEventListener('click', () => showSection(btn.dataset.target))
-  );
-  document.querySelectorAll('.footer-btn').forEach(btn =>
-    btn.addEventListener('click', () => showFooter(btn.dataset.target))
-  );
+  document.querySelectorAll('.footer-btn').forEach(b => b.addEventListener('click',()=>showFooter(b.dataset.target)));
 
   // Default views
   showSection('try');
   showFooter('privacy');
 
   // Theme toggle
-  document.getElementById('theme-toggle').addEventListener('click', () => {
+  const toggle = document.getElementById('theme-toggle');
+  toggle.addEventListener('click', ()=>{
     document.body.classList.toggle('dark');
-    const toggle = document.getElementById('theme-toggle');
     toggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
   });
 
-  // Core arrays (including emojis)
-  const SUFFIXES = ['official','hub','gram','world','life','daily'];
-  const PREFIXES = ['the','its','my','get','go'];
-  const NUMBERS  = ['01','88','360','x','_01'];
-  const TRENDING = ['vibes','lab','zone','hub'];
-  const EMOJIS   = ['😎','✨','🌟','🔥','💯'];
+  // Core arrays
+  const SUFFIXES=['official','hub','gram','world','life','daily'],
+        PREFIXES=['the','its','my','get','go'],
+        NUMBERS=['01','88','360','x','_01'],
+        TRENDING=['vibes','lab','zone','hub'],
+        EMOJIS=['😎','✨','🌟','🔥','💯'];
 
   // DOM refs
-  const form            = document.getElementById('handleForm');
-  const baseInput       = document.getElementById('baseName');
-  const suggestionsDiv  = document.getElementById('suggestions');
-  const maxLengthSlider = document.getElementById('maxLength');
-  const maxLengthVal    = document.getElementById('maxLengthVal');
-  const allowUnderscore = document.getElementById('allowUnderscore');
-  const allowDot        = document.getElementById('allowDot');
-  const allowEmoji      = document.getElementById('allowEmoji');
-  const countSpan       = document.getElementById('count');
-  let sessionCount = 0;
+  const form=document.getElementById('handleForm'),
+        baseInput=document.getElementById('baseName'),
+        suggestionsDiv=document.getElementById('suggestions'),
+        maxLen=document.getElementById('maxLength'),
+        maxLenVal=document.getElementById('maxLengthVal'),
+        uChk=document.getElementById('allowUnderscore'),
+        dChk=document.getElementById('allowDot'),
+        eChk=document.getElementById('allowEmoji'),
+        countEl=document.getElementById('count');
+  let sessionCount=0;
 
-  maxLengthSlider.addEventListener('input', () => {
-    maxLengthVal.textContent = maxLengthSlider.value;
-  });
+  maxLen.addEventListener('input',()=>maxLenVal.textContent=maxLen.value);
 
-  function pick(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
-  }
+  function pick(a){return a[Math.floor(Math.random()*a.length)];}
 
-  function generateSuggestions(base) {
-    const set = new Set();
-    while (set.size < 6) {
-      let name = base;
-      if (Math.random() < 0.5) name = pick(PREFIXES) + name;
-      let suffix;
-      const rand = Math.random();
-      if (allowEmoji.checked && rand < 0.2) {
-        suffix = pick(EMOJIS);
-      } else if (rand < 0.4) {
-        suffix = pick(SUFFIXES);
-      } else if (rand < 0.7) {
-        suffix = pick(TRENDING);
-      } else {
-        suffix = pick(NUMBERS);
-      }
-      name += suffix;
-      const maxL = parseInt(maxLengthSlider.value, 10);
-      if (name.length > maxL) continue;
-      if (!allowUnderscore.checked && name.includes('_')) continue;
-      if (!allowDot.checked && name.includes('.')) continue;
+  function generateSuggestions(base){
+    const set=new Set();
+    while(set.size<6){
+      let name=base;
+      if(Math.random()<0.5) name=pick(PREFIXES)+name;
+      const r=Math.random();
+      let suf;
+      if(eChk.checked && r<.2) suf=pick(EMOJIS);
+      else if(r<.4) suf=pick(SUFFIXES);
+      else if(r<.7) suf=pick(TRENDING);
+      else suf=pick(NUMBERS);
+      name+=suf;
+      if(name.length>parseInt(maxLen.value)) continue;
+      if(!uChk.checked&&name.includes('_')) continue;
+      if(!dChk.checked&&name.includes('.')) continue;
       set.add(name);
     }
-    return Array.from(set);
+    return[...set];
   }
 
-  function renderSuggestions(list) {
-    suggestionsDiv.innerHTML = '';
-    list.forEach(name => {
-      const div = document.createElement('div');
-      div.className = 'suggestion';
-      const p = document.createElement('p');
-      p.textContent = `@${name}`;
-      div.appendChild(p);
+  function renderSuggestions(list){
+    suggestionsDiv.innerHTML='';
+    list.forEach(name=>{
+      const card=document.createElement('div');
+      card.className='suggestion';
+      const p=document.createElement('p');
+      p.textContent='@'+name; card.appendChild(p);
 
-      // Favorite
-      const favBtn = document.createElement('button');
-      favBtn.className = 'favorite-btn';
-      favBtn.innerHTML = '☆';
-      let favs = JSON.parse(localStorage.getItem('favHandles') || '[]');
-      if (favs.includes(name)) { favBtn.classList.add('fav'); favBtn.innerHTML = '★'; }
-      favBtn.addEventListener('click', () => {
-        favs = JSON.parse(localStorage.getItem('favHandles') || '[]');
-        if (favs.includes(name)) {
-          favs = favs.filter(n => n !== name);
-          favBtn.classList.remove('fav'); favBtn.innerHTML = '☆';
+      const fav=document.createElement('button');
+      fav.className='favorite-btn'; fav.textContent='☆';
+      let favs=JSON.parse(localStorage.getItem('favHandles')||'[]');
+      if(favs.includes(name)){fav.classList.add('fav');fav.textContent='★';}
+      fav.onclick=()=>{
+        favs=JSON.parse(localStorage.getItem('favHandles')||'[]');
+        if(favs.includes(name)){
+          favs=favs.filter(x=>x!==name);fav.classList.remove('fav');fav.textContent='☆';
         } else {
-          favs.push(name);
-          favBtn.classList.add('fav'); favBtn.innerHTML = '★';
+          favs.push(name);fav.classList.add('fav');fav.textContent='★';
         }
-        localStorage.setItem('favHandles', JSON.stringify(favs));
-      });
-      div.appendChild(favBtn);
+        localStorage.setItem('favHandles',JSON.stringify(favs));
+      };
+      card.appendChild(fav);
 
-      // Buttons
-      const grp = document.createElement('div');
-      grp.className = 'btn-group';
-      const copy = document.createElement('button');
-      copy.className = 'btn copy-btn';
-      copy.textContent = 'Copy';
-      copy.addEventListener('click', () => {
-        navigator.clipboard.writeText(name).then(() => {
-          copy.textContent = 'Copied!';
-          setTimeout(() => copy.textContent = 'Copy', 1000);
+      const grp=document.createElement('div'); grp.className='btn-group';
+      const copy=document.createElement('button');
+      copy.className='btn copy-btn';copy.textContent='Copy';
+      copy.onclick=()=>{
+        navigator.clipboard.writeText(name).then(()=>{
+          copy.textContent='Copied!';
+          setTimeout(()=>copy.textContent='Copy',1000);
         });
-      });
+      };
       grp.appendChild(copy);
 
-      const share = document.createElement('button');
-      share.className = 'btn share-btn';
-      share.textContent = 'Share';
-      share.addEventListener('click', () => {
-        window.open(`https://twitter.com/intent/tweet?text=@${name}`, '_blank');
-      });
+      const share=document.createElement('button');
+      share.className='btn share-btn';share.textContent='Share';
+      share.onclick=()=>window.open(`https://twitter.com/intent/tweet?text=@${name}`,'_blank');
       grp.appendChild(share);
 
-      div.appendChild(grp);
-      suggestionsDiv.appendChild(div);
+      card.appendChild(grp);
+      suggestionsDiv.appendChild(card);
     });
   }
 
-  form.addEventListener('submit', e => {
+  form.onsubmit=e=>{
     e.preventDefault();
-    const raw = baseInput.value.trim().toLowerCase().replace(/\s+/g, '');
-    if (!raw) return;
-    const suggestions = generateSuggestions(raw);
-    renderSuggestions(suggestions);
-    sessionCount += suggestions.length;
-    countSpan.textContent = sessionCount;
-  });
+    const base=baseInput.value.trim().toLowerCase().replace(/\s+/g,'');
+    if(!base) return;
+    const sugg=generateSuggestions(base);
+    renderSuggestions(sugg);
+    sessionCount+=sugg.length;
+    countEl.textContent=sessionCount;
+  };
   </script>
 </body>
 </html>
