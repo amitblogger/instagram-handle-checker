@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Get instant Instagram name ideas with our free IG handle checker. Unique username suggestions, trending keywords, smart filters—no API required!" />
+  <meta name="keywords" content="Instagram handle checker, Instagram name ideas, IG username generator, unique IG names" />
+  <title>Instagram Handle Checker | Free IG Name Ideas Generator</title>
+
+  <!-- JSON‑LD structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Instagram Handle Checker & Suggestion Tool",
+    "url": "https://<your-username>.github.io/instagram-handle-checker/",
+    "description": "Generate unique Instagram handle ideas and check handle availability."
+  }
+  </script>
+
+  <style>
+  /* Utility Reset */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* Theme Variables */
+  :root {
+    --primary: #405DE6;
+    --secondary: #833AB4;
+    --accent: #FD1D1D;
+    --bg-light: #FAFAFA;
+    --bg-dark: #1A1A1A;
+    --text-light: #222;
+    --text-dark: #EEE;
+    --radius: 6px;
+    --transition: 0.3s ease;
+  }
+
+  /* Light & Dark Mode */
+  body {
+    background: var(--bg-light);
+    color: var(--text-light);
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background var(--transition), color var(--transition);
+  }
+  body.dark {
+    --bg-light: var(--bg-dark);
+    --text-light: var(--text-dark);
+  }
+
+  /* Header & Nav */
+  header {
+    position: sticky; top: 0;
+    background: var(--primary);
+    color: #fff;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    z-index: 1000;
+  }
+  .header-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .logo {
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .logo .icon { font-size: 2.5rem; }
+  .header-tagline {
+    font-size: 1rem;
+    color: #fff;
+    opacity: 0.9;
+  }
+  #theme-toggle {
+    background: none; border: none;
+    color: #fff; font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform var(--transition);
+  }
+  nav ul {
+    display: flex; gap: 1rem; list-style: none;
+  }
+  nav a {
+    color: #fff; text-decoration: none; font-weight: bold;
+    cursor: pointer; transition: opacity var(--transition);
+  }
+  nav a:hover { opacity: 0.8; }
+
+  /* Sections */
+  main section {
+    display: none;
+    padding: 2rem 1rem;
+    max-width: 800px; margin: auto;
+  }
+  main section.active { display: block; }
+  h2 { margin-bottom: 1rem; color: var(--primary); }
+
+  /* Hero / Try Section */
+  .hero {
+    background: #fff; border-radius: var(--radius);
+    padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  .hero h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+  .hero .tagline { margin-bottom: 1rem; font-style: italic; color: var(--secondary); }
+
+  #handleForm {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;
+  }
+  #handleForm input {
+    flex: 1 1 200px; padding: 0.6rem;
+    border: 2px solid var(--primary); border-radius: var(--radius);
+  }
+  #handleForm button {
+    padding: 0.6rem 1.2rem; background: var(--secondary);
+    color: #fff; border: none; border-radius: var(--radius);
+    cursor: pointer; transition: background var(--transition);
+  }
+  #handleForm button:hover { background: var(--accent); }
+
+  .filters {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;
+    margin: 1rem 0;
+  }
+  .filters label { font-size: 0.9rem; }
+  #maxLengthVal { font-weight: bold; margin-left: 0.3rem; }
+
+  #analytics { text-align: center; font-size: 0.9rem; margin-bottom: 1rem; }
+
+  /* Suggestions Grid */
+  .suggestions {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 1rem;
+  }
+  .suggestion {
+    background: #fff; border: 2px solid var(--primary);
+    border-radius: var(--radius); padding: 1rem; position: relative;
+  }
+  .suggestion p { margin-bottom: 0.5rem; word-break: break-all; }
+  .btn-group { display: flex; gap: 0.3rem; }
+  .btn {
+    flex: 1; padding: 0.4rem; font-size: 0.85rem;
+    border: none; border-radius: var(--radius); cursor: pointer;
+    transition: background var(--transition);
+  }
+  .copy-btn { background: var(--primary); color: #fff; }
+  .copy-btn:hover { background: var(--accent); }
+  .share-btn { background: var(--secondary); color: #fff; }
+  .share-btn:hover { background: var(--accent); }
+  .favorite-btn {
+    position: absolute; top: 0.5rem; right: 0.5rem;
+    background: none; border: none; font-size: 1.2rem; cursor: pointer;
+    color: var(--accent); transition: color var(--transition);
+  }
+  .favorite-btn.fav { color: gold; }
+
+  /* Footer */
+  footer {
+    background: #f7f7f7; padding: 2rem 1rem; margin-top: auto;
+  }
+  footer nav ul {
+    display: flex; gap: 1rem; list-style: none; justify-content: center;
+  }
+  footer nav a {
+    color: var(--primary); text-decoration: none; font-weight: bold;
+    cursor: pointer; transition: opacity var(--transition);
+  }
+  footer section { display: none; margin-top: 1rem; }
+  footer section.active { display: block; }
+  footer section p { line-height: 1.6; margin-top: 0.5rem; }
+
+  @media (max-width: 600px) {
+    nav ul { flex-direction: column; align-items: center; }
+    .filters { flex-direction: column; }
+  }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="logo"><span class="icon">📷</span> Instagram Handle Checker</div>
+      <div class="header-tagline">Your brand starts here</div>
+      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+      <nav>
+        <ul>
+          <li><a onclick="showSection('home')">Home</a></li>
+          <li><a onclick="showSection('how-it-works')">How It Works</a></li>
+          <li><a onclick="showSection('features')">Features</a></li>
+          <li><a onclick="showSection('faq')">FAQ</a></li>
+          <li><a onclick="showSection('try')">Try Now</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="home">
+      <h2>Welcome to IG Handle Checker</h2>
+      <p>Finding the perfect Instagram handle can be a challenge—especially if your first choice is already taken.
+         Our free IG Handle Checker & Suggestion Tool helps you brainstorm unique, brand‑worthy usernames in seconds.
+         No APIs or external lookups—just a smart combination of prefixes, suffixes, trending buzzwords, and numbers
+         to generate handles that stand out.</p>
+    </section>
+
+    <section id="how-it-works">
+      <h2>How It Works</h2>
+      <ul>
+        <li><strong>Enter a Base Name:</strong> Type your desired handle component (e.g., “yourbrand”).</li>
+        <li><strong>Adjust Filters:</strong> Set max length, allow underscores/dots/emojis.</li>
+        <li><strong>Generate Suggestions:</strong> Click Generate to see 6 unique handle ideas.</li>
+        <li><strong>Copy & Share:</strong> One‑click copy to clipboard or share on Twitter.</li>
+      </ul>
+    </section>
+
+    <section id="features">
+      <h2>Key Features</h2>
+      <ul>
+        <li><strong>Instant Suggestions:</strong> Six unique handles per click.</li>
+        <li><strong>Smart Filters:</strong> Max length slider, toggles for “_”, “.”, emojis.</li>
+        <li><strong>Trending Boosters:</strong> Add buzzwords like “vibes,” “zone,” “hub.”</li>
+        <li><strong>Favorites:</strong> Save your top picks with a star icon.</li>
+        <li><strong>Analytics:</strong> See how many names you’ve generated this session.</li>
+        <li><strong>Dark/Light Mode:</strong> Toggle theme manually.</li>
+      </ul>
+    </section>
+
+    <section id="faq">
+      <h2>Frequently Asked Questions</h2>
+      <h3>Can I check real availability?</h3>
+      <p>This version generates suggestions only—it does not ping Instagram’s servers. Always verify on Instagram before claiming a handle.</p>
+      <h3>How long can my Instagram username be?</h3>
+      <p>Instagram allows up to 30 characters. Adjust the slider above to set your preferred max length.</p>
+    </section>
+
+    <section id="try" class="active hero">
+      <h1>Try It Now</h1>
+      <div class="tagline">Find Your Perfect Instagram Handle in Seconds</div>
+      <form id="handleForm">
+        <input type="text" id="baseName" placeholder="Enter base name" required aria-label="Base name" />
+        <button type="submit">Generate</button>
+      </form>
+
+      <div class="filters">
+        <label>
+          Max length:
+          <input type="range" id="maxLength" min="5" max="30" value="15" />
+          <span id="maxLengthVal">15</span>
+        </label>
+        <label><input type="checkbox" id="allowUnderscore" checked /> Allow “_”</label>
+        <label><input type="checkbox" id="allowDot" checked /> Allow “.”</label>
+        <label><input type="checkbox" id="allowEmoji" /> Allow emojis</label>
+      </div>
+
+      <div id="analytics">
+        Suggestions generated this session: <span id="count">0</span>
+      </div>
+
+      <div id="suggestions" class="suggestions" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer>
+    <nav>
+      <ul>
+        <li><a onclick="showFooter('privacy')">Privacy Policy</a></li>
+        <li><a onclick="showFooter('disclaimer')">Disclaimer</a></li>
+        <li><a onclick="showFooter('contact-us')">Contact Us</a></li>
+      </ul>
+    </nav>
+    <section id="privacy">
+      <h3>Privacy Policy</h3>
+      <p>We respect your privacy. This tool runs entirely in your browser—no data is sent to any server. Your inputs and
+         generated suggestions remain local. We do not store personal information, track cookies, or share data with
+         third parties. Feel free to clear your browser data at any time to remove any residual information.</p>
+    </section>
+    <section id="disclaimer">
+      <h3>Disclaimer</h3>
+      <p>This IG Handle Checker provides creative suggestions only. It does not verify real‑time availability on Instagram.
+         Always check directly on Instagram before finalizing your handle. We cannot guarantee that any suggested handle
+         is free at the time of use.</p>
+    </section>
+    <section id="contact-us">
+      <h3>Contact Us</h3>
+      <p>Have feedback or questions? Reach out to us at <a href="mailto:support@yourdomain.com">support@yourdomain.com</a>.
+         We aim to respond within 48 hours. Whether you encounter bugs, need feature requests, or want to share your success
+         story, we’d love to hear from you!</p>
+    </section>
+  </footer>
+
+  <script>
+  function showSection(id) {
+    document.querySelectorAll('main section').forEach(sec => {
+      sec.classList.toggle('active', sec.id === id);
+    });
+  }
+  function showFooter(id) {
+    ['privacy','disclaimer','contact-us'].forEach(sec => {
+      document.getElementById(sec).classList.toggle('active', sec === id);
+    });
+  }
+  document.querySelectorAll('nav a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = a.getAttribute('onclick').match(/'([^']+)'/)[1];
+      showSection(target);
+    });
+  });
+
+  // Core arrays
+  const SUFFIXES = ['official','hub','gram','world','life','daily'];
+  const PREFIXES = ['the','its','my','get','go'];
+  const NUMBERS  = ['01','88','360','x','_01'];
+  const TRENDING = ['vibes','lab','zone','hub'];
+
+  // DOM refs
+  const form            = document.getElementById('handleForm');
+  const baseInput       = document.getElementById('baseName');
+  const suggestionsDiv  = document.getElementById('suggestions');
+  const maxLengthSlider = document.getElementById('maxLength');
+  const maxLengthVal    = document.getElementById('maxLengthVal');
+  const allowUnderscore = document.getElementById('allowUnderscore');
+  const allowDot        = document.getElementById('allowDot');
+  const allowEmoji      = document.getElementById('allowEmoji');
+  const countSpan       = document.getElementById('count');
+  let sessionCount = 0;
+
+  maxLengthSlider.addEventListener('input', () => {
+    maxLengthVal.textContent = maxLengthSlider.value;
+  });
+
+  function pick(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  function generateSuggestions(base) {
+    const set = new Set();
+    while (set.size < 6) {
+      let name = base;
+      if (Math.random() < 0.5) name = pick(PREFIXES) + name;
+      const choice = Math.random();
+      if (choice < 0.3) name += pick(SUFFIXES);
+      else if (choice < 0.6) name += pick(TRENDING);
+      else name += pick(NUMBERS);
+      const maxL = parseInt(maxLengthSlider.value, 10);
+      if (name.length > maxL) continue;
+      if (!allowUnderscore.checked && name.includes('_')) continue;
+      if (!allowDot.checked && name.includes('.')) continue;
+      if (!allowEmoji.checked && /[\u{1F300}-\u{1F6FF}]/u.test(name)) continue;
+      set.add(name);
+    }
+    return Array.from(set);
+  }
+
+  function renderSuggestions(list) {
+    suggestionsDiv.innerHTML = '';
+    list.forEach(name => {
+      const div = document.createElement('div');
+      div.className = 'suggestion';
+      const p = document.createElement('p');
+      p.textContent = `@${name}`;
+      div.appendChild(p);
+
+      const favBtn = document.createElement('button');
+      favBtn.className = 'favorite-btn';
+      favBtn.innerHTML = '☆';
+      let favs = JSON.parse(localStorage.getItem('favHandles') || '[]');
+      if (favs.includes(name)) { favBtn.classList.add('fav'); favBtn.innerHTML = '★'; }
+      favBtn.addEventListener('click', () => {
+        favs = JSON.parse(localStorage.getItem('favHandles') || '[]');
+        if (favs.includes(name)) {
+          favs = favs.filter(n => n !== name);
+          favBtn.classList.remove('fav'); favBtn.innerHTML = '☆';
+        } else {
+          favs.push(name);
+          favBtn.classList.add('fav'); favBtn.innerHTML = '★';
+        }
+        localStorage.setItem('favHandles', JSON.stringify(favs));
+      });
+      div.appendChild(favBtn);
+
+      const grp = document.createElement('div');
+      grp.className = 'btn-group';
+
+      const copy = document.createElement('button');
+      copy.className = 'btn copy-btn';
+      copy.textContent = 'Copy';
+      copy.addEventListener('click', () => {
+        navigator.clipboard.writeText(name).then(() => {
+          copy.textContent = 'Copied!';
+          setTimeout(() => copy.textContent = 'Copy', 1000);
+        });
+      });
+      grp.appendChild(copy);
+
+      const share = document.createElement('button');
+      share.className = 'btn share-btn';
+      share.textContent = 'Share';
+      share.addEventListener('click', () => {
+        window.open(`https://twitter.com/intent/tweet?text=@${name}`, '_blank');
+      });
+      grp.appendChild(share);
+
+      div.appendChild(grp);
+      suggestionsDiv.appendChild(div);
+    });
+  }
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const raw = baseInput.value.trim().toLowerCase().replace(/\s+/g, '');
+    if (!raw) return;
+    const suggestions = generateSuggestions(raw);
+    renderSuggestions(suggestions);
+    sessionCount += suggestions.length;
+    countSpan.textContent = sessionCount;
+    showSection('try');
+  });
+
+  // Theme toggle
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    const isDark = document.body.classList.contains('dark');
+    document.getElementById('theme-toggle').textContent = isDark ? '☀️' : '🌙';
+  });
+  </script>
+</body>
+</html>
